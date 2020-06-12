@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
-export const Header = ({user}) =>
+export const Header = ({auth}) =>
     <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-3">
         <div className="container">
             <Link to="/" className="navbar-brand">React blog</Link>
@@ -22,11 +22,11 @@ export const Header = ({user}) =>
                     </li>
                 </ul>
                 {
-                    user
+                    auth
                         ?
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <Link to="#" className="nav-link">{user.name}</Link>
+                                <Link to="#" className="nav-link">{auth.name}</Link>
                             </li>
                             <li className="nav-item">
                                 <Link to="/logout" className="nav-link">Выход</Link>
@@ -42,12 +42,11 @@ export const Header = ({user}) =>
                             </li>
                         </ul>
                 }
-
             </div>
         </div>
     </nav>;
 
 const mapStateToProps = state => ({
-    user: state.auth.user
+    auth: state.auth
 });
 export default connect(mapStateToProps)(Header);

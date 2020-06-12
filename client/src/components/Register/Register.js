@@ -1,12 +1,14 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
-import {loginUser} from "store/actions/auth";
+import {registerUser} from "store/actions/auth";
 import {clearErrors} from "store/actions/errors";
 
-export class Login extends PureComponent {
+export class Register extends PureComponent {
     state = {
+        name: "",
         email: "",
         password: "",
+        password2: "",
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -26,32 +28,48 @@ export class Login extends PureComponent {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.loginUser(this.state);
+        this.props.registerUser(this.state);
     };
 
     render() {
-        const {email, password} = this.state;
+        const {name, email, password, password2} = this.state;
         const {errors} = this.props;
         return <div className="row">
             <form className="card p-3 mx-auto col-md-6" onSubmit={this.handleSubmit}>
-                <h1 className="text-center">Вход</h1>
+                <h1 className="text-center">Регистрация</h1>
+                <div className="form-group">
+                    <label htmlFor="name">Имя</label>
+                    <input className="form-control" type="text" name="name" id="name" value={name}
+                           onChange={this.handleChange}/>
+                    {
+                        errors.name && <div className="text-danger">{errors.name}</div>
+                    }
+                </div>
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
-                    <input className="form-control" type="text" name="email" id="email" value={email}
+                    <input className="form-control" type="email" name="email" id="email" value={email}
                            onChange={this.handleChange}/>
                     {
                         errors.email && <div className="text-danger">{errors.email}</div>
                     }
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">Пароль</label>
                     <input className="form-control" type="password" name="password" id="password" value={password}
                            onChange={this.handleChange}/>
                     {
                         errors.password && <div className="text-danger">{errors.password}</div>
                     }
                 </div>
-                <button type="submit" className="btn btn-dark btn-lg">Войти</button>
+                <div className="form-group">
+                    <label htmlFor="password2">Повторите пароль</label>
+                    <input className="form-control" type="password2" name="password2" id="password2" value={password2}
+                           onChange={this.handleChange}/>
+                    {
+                        errors.password2 && <div className="text-danger">{errors.password2}</div>
+                    }
+                </div>
+                <button type="submit" className="btn btn-dark btn-lg">Зарегистрироваться</button>
             </form>
         </div>;
     }
@@ -62,4 +80,4 @@ const mapStateToProps = state => ({
     errors: state.errors
 });
 
-export default connect(mapStateToProps, {loginUser, clearErrors})(Login);
+export default connect(mapStateToProps, {registerUser, clearErrors})(Register);

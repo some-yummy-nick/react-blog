@@ -9,9 +9,17 @@ export const loginUser = data => async dispatch => {
         const res = await axios.post("/api/users/login", data);
         dispatch({type: actions.LOGIN_USER, payload: res.data.user});
     } catch (e) {
-        dispatch({type: actions.ERROR, payload: e.response.data})
+        dispatch({type: actions.SET_ERRORS, payload: e.response.data})
     }
+};
 
+export const registerUser = data => async dispatch => {
+    try {
+        const res = await axios.post("/api/users/register", data);
+        dispatch({type: actions.REGISTER_USER, payload: res.data.user});
+    } catch (e) {
+        dispatch({type: actions.SET_ERRORS, payload: e.response.data})
+    }
 };
 
 export const logoutUser = () => {

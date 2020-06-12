@@ -1,4 +1,6 @@
 export const SET_USER = "SET_USER";
 export const LOGIN_USER = "LOGIN_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
-export const ERROR = "ERROR";
+export const REGISTER_USER = "REGISTER_USER";
+export const SET_ERRORS = "SET_ERRORS";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
