@@ -1,0 +1,4 @@
+{
+  "mongoURL": "mongodb+srv://marat:Ls5112233@cluster0-qfeqx.mongodb.net/blog?retryWrites=true&w=majority",
+  "key": "key"
+}
