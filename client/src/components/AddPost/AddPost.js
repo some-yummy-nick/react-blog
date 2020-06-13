@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {addPost} from "store/actions/posts";
+import WithAuth from "hocs/WithAuth/WithAuth";
 
 export class AddPost extends PureComponent {
     state = {
@@ -12,7 +13,9 @@ export class AddPost extends PureComponent {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.addPost(this.state, this.props.history);
+        if (this.state.title && this.state.text) {
+            this.props.addPost(this.state, this.props.history);
+        }
     };
 
     render() {
@@ -37,4 +40,4 @@ export class AddPost extends PureComponent {
     }
 }
 
-export default connect(null, {addPost})(AddPost);
+export default WithAuth(connect(null, {addPost})(AddPost));

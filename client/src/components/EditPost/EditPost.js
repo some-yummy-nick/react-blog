@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {editPost, getPost} from "store/actions/posts";
 import {Spinner} from "components/Spinner/Spinner";
+import WithAuth from "hocs/WithAuth/WithAuth";
 
 export class EditPost extends PureComponent {
     constructor(props) {
@@ -58,4 +59,4 @@ const mapStateToProps = state => ({
     post: state.posts.item,
 });
 
-export default connect(mapStateToProps, {editPost, getPost})(EditPost);
+export default WithAuth(connect(mapStateToProps, {editPost, getPost})(EditPost));

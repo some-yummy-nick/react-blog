@@ -30,7 +30,6 @@ export class Comment extends PureComponent {
     }
 }
 
-
 const mapStateToProps = state => ({
     auth: state.auth
 });
