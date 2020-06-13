@@ -48,3 +48,21 @@ export const deletePost = (id, history) => async dispatch => {
         dispatch({type: actions.SET_ERRORS, payload: e.response.data})
     }
 };
+
+export const addComment = (id, comment) => async dispatch => {
+    try {
+        const res = await axios.post(`/api/posts/comment/${id}`, comment);
+        dispatch({type: actions.ADD_COMMENT, payload: res.data});
+    } catch (e) {
+        dispatch({type: actions.SET_ERRORS, payload: e.response.data})
+    }
+};
+
+export const deleteComment = id => async dispatch => {
+    try {
+        const res = await axios.delete(`/api/posts/comment/${id}`);
+        dispatch({type: actions.DELETE_COMMENT, payload: res.data});
+    } catch (e) {
+        dispatch({type: actions.SET_ERRORS, payload: e.response.data})
+    }
+};

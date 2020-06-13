@@ -1,4 +1,4 @@
-import {GET_POSTS, GET_POST, DELETE_POST, ADD_POST, EDIT_POST} from "store/actions";
+import {GET_POSTS, GET_POST, DELETE_POST, ADD_POST, EDIT_POST, ADD_COMMENT, DELETE_COMMENT} from "store/actions";
 
 const initialState = {
     items: null,
@@ -32,6 +32,13 @@ export default (state = initialState, action) => {
                 ...state,
                 item: null
             };
+        case DELETE_COMMENT:
+        case ADD_COMMENT:
+            return {
+                ...state,
+                item: action.payload
+            };
+
         default:
             return state;
     }

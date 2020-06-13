@@ -3,6 +3,8 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {getPost, deletePost} from "store/actions/posts";
 import {Spinner} from "components/Spinner/Spinner";
+import AddComment from "components/AddComment/AddComment";
+import Comments from "components/Comments/Comments";
 
 export class PostPage extends PureComponent {
 
@@ -38,6 +40,8 @@ export class PostPage extends PureComponent {
                     </div>
                     <p className="text-muted">{post.author.name}</p>
                     <p>{post.text}</p>
+                    <AddComment/>
+                    <Comments comments={post.comments}/>
                 </>
             }
         </>;
