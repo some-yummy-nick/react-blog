@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
+import Helmet from "react-helmet";
 import {getPost, deletePost} from "store/actions/posts";
 import {Spinner} from "components/Spinner/Spinner";
 import AddComment from "components/AddComment/AddComment";
@@ -24,6 +25,9 @@ export class PostPage extends PureComponent {
             {!post ?
                 <Spinner/> :
                 <>
+                    <Helmet>
+                        <title>React блог | {post.title}</title>
+                    </Helmet>
                     <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center">
                         <div className="mr-sm-2 mr-auto">
                             <h1>{post.title}</h1>

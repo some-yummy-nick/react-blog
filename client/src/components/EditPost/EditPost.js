@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
+import Helmet from "react-helmet";
 import {editPost, getPost} from "store/actions/posts";
 import {Spinner} from "components/Spinner/Spinner";
 import WithAuth from "hocs/WithAuth/WithAuth";
@@ -29,7 +30,11 @@ export class EditPost extends PureComponent {
     render() {
         const {post} = this.props;
 
-        return <>{
+        return <>
+            <Helmet>
+                <title>React блог | Редактирование статьи</title>
+            </Helmet>
+            {
             !post ?
                 <Spinner/> :
                 <div className="row">
